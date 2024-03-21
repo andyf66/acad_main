@@ -394,6 +394,24 @@ G = "trade_"
 bw = bw(ADH_master, y, x, controls, weight, ADH_local2, Z, ADH_global, G)
 print(bw, n=30)
 
+#####################################
+### Estimates for intermediate goods
+#####################################
+
+ze <- read_excel("repl_2023a.xlsx",sheet=3)
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+
+lm1 <- lm(ipw_fr_final ~ ipw_oth_final+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_final|ipw_oth_final, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_interm|ipw_oth_interm, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 
 
 
