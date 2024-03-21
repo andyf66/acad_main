@@ -1,0 +1,273 @@
+
+
+################################################################################
+### Fournel-2023a / Replication file
+################################################################################
+
+setwd("C:/Users/...")
+library(readxl)
+library(clubSandwich)
+library(ivreg)
+library(reldist)
+
+#####################################
+### TABLE - Exposure to import competition and change in manufacturing employment 
+#####################################
+
+
+ze <- read_excel("repl_2023a.xlsx",sheet=3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze <- subset(ze, ze$year =="y1990")
+lm1 <- lm(alt_DEP3 ~ ipw_fr_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze <- subset(ze, ze$year =="y1999")
+lm1 <- lm(alt_DEP3 ~ ipw_fr_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze <- subset(ze, ze$year =="y2008")
+lm1 <- lm(alt_DEP3 ~ ipw_fr_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+#####################################
+### TABLE - Pooled decades - Employment effect of import exposure
+#####################################
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year), data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+share_indus_1999 , data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+share_indus_1999 |ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+factor(regions)+share_indus_1999 , data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 |ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+factor(regions)+share_indus_1999 +new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 +new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+#####################################
+### TABLE  - Average exposure per decade
+#####################################
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze1 <- subset(ze, ze$year =="y1990")
+weighted.mean(ze1$ipw_fr_autor,ze1$employ_tot)
+ze1 <- subset(ze, ze$year =="y1999")
+weighted.mean(ze1$ipw_fr_autor,ze1$employ_tot)
+ze1 <- subset(ze, ze$year =="y2008")
+weighted.mean(ze1$ipw_fr_autor,ze1$employ_tot)
+
+#####################################
+### TABLE  - Pop and unemployment effects
+#####################################
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor /1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor /1000
+ze <- subset(ze, !ze$year =="y2008")
+
+m_iv <- ivreg(eactin ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(eactin ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(mov_extra ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(mov_extra ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(sold_nat ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(sold_nat ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+m_iv <- ivreg(aactind_s ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(aactind_s ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(aactter_s ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(aactter_s ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(chom_s ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(chom_s ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(retrai_s ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(retrai_s ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(inact_s ~ factor(year)+factor(regions)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(inact_s ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+
+
+#####################################
+### TABLE - Alternative trade partners
+#####################################
+
+
+ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
+ze$zone <- substr(ze$ZE_ID,3,3)
+ze$ipw_fr_autor <- ze$ipw_fr_autor /1000
+ze$ipw_oth_autor <- ze$ipw_oth_autor /1000
+ze <- subset(ze, !ze$year =="y2008")
+
+
+lm1 <- lm(alt_DEP3 ~ factor(year)+ipw_fr_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered+ipw_fr_autor, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ ipw_oth_autor+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+m_iv <- ivreg(alt_DEP3 ~ factor(year)|ipw_fr_autor|rob_inst_2, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|ipw_fr_autor|rob_inst_2, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ rob_inst_2, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(ipw_fr_autor ~ rob_inst_2+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+ze$inst1 <- ze$rob_de_fr
+ze$inst2 <- ze$rob_de_oth
+lm1 <- lm(alt_DEP3 ~ factor(year)+inst1, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(alt_DEP3 ~ factor(year)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered+inst1, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered+inst1, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)|inst1|inst2, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+m_iv <- ivreg(alt_DEP3 ~ factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered|inst1|inst2, data=ze, weights=ze$pop_tot_1999)
+summary(m_iv)
+coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(inst1 ~ inst2, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+lm1 <- lm(inst1 ~ inst2+factor(year)+factor(regions)+share_indus_1999 + fem_1999+immig_1999+diplosup_1999+prec_1999+new_routine+new_apr+new_offshore_centered, data=ze, weights=ze$pop_tot_1999)
+summary(lm1)
+coef_test(lm1, vcov = "CR1", cluster = ze$zone, test = "naive-t")
+
+ze1 <- subset(ze, ze$year=="y1999")
+aa <- weighted.mean(ze1$inst1, ze1$pop_tot_1999)
+ze1 <- subset(ze, ze$year=="y1990")
+ab <- weighted.mean(ze1$inst1, ze1$pop_tot_1999)
+ab+aa
+
+ze1 <- subset(ze, ze$year=="y1999")
+aa <- weighted.mean(ze1$ipw_fr_autor, ze1$pop_tot_1999)
+ze1 <- subset(ze, ze$year=="y1990")
+ab <- weighted.mean(ze1$ipw_fr_autor, ze1$pop_tot_1999)
+ab+aa
+
