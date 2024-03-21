@@ -15,7 +15,7 @@ library(reldist)
 #####################################
 
 
-ze <- read_excel("repl_2023a.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
 ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
@@ -31,7 +31,7 @@ m_iv <- ivreg(alt_DEP3 ~ ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot
 summary(m_iv)
 coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
 ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
@@ -47,7 +47,7 @@ m_iv <- ivreg(alt_DEP3 ~ ipw_fr_autor|ipw_oth_autor, data=ze, weights=ze$pop_tot
 summary(m_iv)
 coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
 ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
@@ -67,7 +67,7 @@ coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 ### TABLE - Pooled decades - Employment effect of import exposure
 #####################################
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
 ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
@@ -118,7 +118,7 @@ coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 ### TABLE  - Average exposure per decade
 #####################################
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
 ze$ipw_oth_autor <- ze$ipw_oth_autor/1000
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
@@ -134,7 +134,7 @@ weighted.mean(ze1$ipw_fr_autor,ze1$employ_tot)
 ### TABLE  - Pop and unemployment effects
 #####################################
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
 ze$zone <- substr(ze$ZE_ID,3,3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor /1000
@@ -198,7 +198,7 @@ coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 #####################################
 
 
-ze <- read_excel("f2023a_repl.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
 ze$zone <- substr(ze$ZE_ID,3,3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor /1000
@@ -286,9 +286,9 @@ df2 <- ADH$W
 
 naf10 <- c(  "A1","B1","C1","D1","E1","E2","E3","E4", "F1", "G1","G2","G3","H1", "I1", "J1","J2")
 
-ipw90 <- read_xlsx("manuf_emp.xlsx",sheet=2)
-ipw99 <- read_xlsx("manuf_emp.xlsx",sheet=3)
-ipw08 <- read_xlsx("manuf_emp.xlsx",sheet=4)
+ipw90 <- read_xlsx("fournel2023a_manufempl.xlsx",sheet=2)
+ipw99 <- read_xlsx("fournel2023a_manufempl.xlsx",sheet=3)
+ipw08 <- read_xlsx("fournel2023a_manufempl.xlsx",sheet=4)
 vecn <- c(1:16)
 vecz <- c(1:304)
 ipw <- ipw90
@@ -320,7 +320,7 @@ colnames(maz2a)<- vn1
 maz3a <- bind_rows(maz1,maz2)
 maz3 <- bind_rows(maz3a,maz2a)
 
-ze <- read_excel("repl_2023a.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
 ze$zone <- substr(ze$ZE_ID,3,3)
 ze$ipw_fr_autor <- ze$ipw_fr_autor/1000
@@ -368,9 +368,9 @@ summary(lm1)
 #devtools::install_github("paulgp/bartik-weight/R-code/pkg")
 
 library(bartik.weight)
-ADH_local <-  read_xlsx("g_shares.xlsx", sheet=2)
-ADH_global <-  read_xlsx("g_shares.xlsx", sheet=1)
-ADH_master <-  read_xlsx("g_shares.xlsx", sheet=3)
+ADH_local <-  read_xlsx("fournel2023a_main_ze_sh.xlsx", sheet=2)
+ADH_global <-  read_xlsx("fournel2023a_main_ze_sh.xlsx", sheet=1)
+ADH_master <-  read_xlsx("fournel2023a_main_ze_sh.xlsx", sheet=3)
 ADH_local <- subset(ADH_local, !ADH_local$ind=="DZ")
 ADH_local <- subset(ADH_local, !ADH_local$year==2010)
 ADH_global <- subset(ADH_global, !ADH_global$year==2010)
@@ -398,7 +398,7 @@ print(bw, n=30)
 ### Estimates for intermediate goods
 #####################################
 
-ze <- read_excel("repl_2023a.xlsx",sheet=3)
+ze <- read_excel("fournel2023a_main_ze.xlsx",sheet=3)
 ze$regions <- as.factor(substr(ze$ZE_ID,3,4))
 ze$zone <- substr(ze$ZE_ID,3,3)
 
