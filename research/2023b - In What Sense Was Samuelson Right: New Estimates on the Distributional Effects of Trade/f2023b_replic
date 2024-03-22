@@ -40,9 +40,6 @@ irc90$fm1990<- (irc90$fm1990/irc90$fn1990)*1*1.41*1.722*1.0106*0.1524
 irc99 <- read.csv("irc1999.csv", sep=";")
 irc99 <- subset(irc99, irc99$nivo=="C")
 irc99 <- irc99[c(6,14,15)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 vall <- c(vparis,vlyon,vmarseille)
 irc99 <- subset(irc99, !irc99$depcom %in% vall)
 irc99 <- aggregate(cbind(fn1999,fs1999)~depcom , data=irc99 , sum)
@@ -52,9 +49,6 @@ irc99$fm1999<- (irc99$fs1999/irc99$fn1999)*1*1.41*1.436*1.009
 irc09 <- read.csv("irc2009.csv", sep=",")
 irc09 <- subset(irc09, irc09$nivo=="C")
 irc09 <- irc09[c(6,9,10)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vparis){irc09$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vlyon){irc09$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vmarseille){irc09$depcom[i]<-"13055"}}
@@ -66,9 +60,6 @@ irc19 <- read.csv("irc2019.csv", sep=",")
 irc19 <- irc19[c(15,4,5)]
 irc19$fn002019 <- as.numeric(irc19$fn002019)
 irc19$fs002019 <- as.numeric(irc19$fs002019)
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vparis){irc19$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vlyon){irc19$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vmarseille){irc19$depcom[i]<-"13055"}}
@@ -127,9 +118,6 @@ cont <- unique(transform(cont, pop_act_1999=ave(pop_act_1999, iris, FUN=sum),
                          pop_tot_1999=ave(pop_tot_1999, iris, FUN=sum), 
                          etrang_1999=ave(etrang_1999, iris, FUN=sum)))
 colnames(cont)[1]<-"depcom"
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(cont)[1])){if(cont$depcom[i] %in% vparis){cont$depcom[i]<-"75056"}}
 for(i in c(1:dim(cont)[1])){if(cont$depcom[i] %in% vlyon){cont$depcom[i]<-"69123"}}
 for(i in c(1:dim(cont)[1])){if(cont$depcom[i] %in% vmarseille){cont$depcom[i]<-"13055"}}
@@ -201,9 +189,6 @@ irc90 <- irc90[c(4,7,8)]
 irc90$fm1990 <- as.numeric(irc90$fm1990)
 irc90$fn1990 <- as.numeric(irc90$fn1990)
 irc90$fm1990 <- (irc90$fm1990*irc90$fn1990)/1
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vparis){irc90$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vlyon){irc90$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vmarseille){irc90$depcom[i]<-"13055"}}
@@ -212,9 +197,6 @@ irc90$fm1990<- (irc90$fm1990/irc90$fn1990)*1*1.41*1.722*1.0106*0.1524
 irc99 <- read.csv("irc1999.csv", sep=";")
 irc99 <- subset(irc99, irc99$nivo=="C")
 irc99 <- irc99[c(6,14,15)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 vall <- c(vparis,vlyon,vmarseille)
 irc99 <- subset(irc99, !irc99$depcom %in% vall)
 irc99 <- aggregate(cbind(fn1999,fs1999)~depcom , data=irc99 , sum)
@@ -222,9 +204,6 @@ irc99$fm1999<- (irc99$fs1999/irc99$fn1999)*1*1.41*1.436*1.009
 irc09 <- read.csv("irc2009.csv", sep=",")
 irc09 <- subset(irc09, irc09$nivo=="C")
 irc09 <- irc09[c(6,9,10)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vparis){irc09$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vlyon){irc09$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vmarseille){irc09$depcom[i]<-"13055"}}
@@ -234,9 +213,6 @@ irc19 <- read.csv("irc2019.csv", sep=",")
 irc19 <- irc19[c(15,4,5)]
 irc19$fn002019 <- as.numeric(irc19$fn002019)
 irc19$fs002019 <- as.numeric(irc19$fs002019)
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vparis){irc19$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vlyon){irc19$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vmarseille){irc19$depcom[i]<-"13055"}}
@@ -317,71 +293,36 @@ vfr1 <- dec17
 p <- c(1:9)/10
 irc <- irc0
 vfr <- vfr0
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10 <- NA
-irc$d50 <- NA
-irc$d40 <- NA
-irc$m <- NA
-irc$cdf10 <- NA
+varvec <- c(paste("d",c(1:10,50,40),sep=""),"m","cdf10")
+irc[varvec] <- NA
 for (i in c(1:dim(irc)[1])) {
   q <- as.vector(as.matrix(irc[i,3:11]))
   distribution <-  thresholds_fit(p, q)
-  irc$d1[i] <- bracket_average(distribution, 0.00001, 0.1)
-  irc$d2[i] <- bracket_average(distribution, 0.1,0.2)
-  irc$d3[i] <- bracket_average(distribution, 0.2,0.3)
-  irc$d4[i] <- bracket_average(distribution, 0.3,0.4)
-  irc$d5[i] <- bracket_average(distribution, 0.4,0.5)
-  irc$d6[i] <- bracket_average(distribution, 0.5,0.6)
-  irc$d7[i] <- bracket_average(distribution, 0.6,0.7)
-  irc$d8[i] <- bracket_average(distribution,0.7,0.8)
-  irc$d9[i] <- bracket_average(distribution, 0.8,0.9)
-  irc$d10[i]<-bracket_average(distribution, 0.9, 0.999999)
-  irc$d50[i] <- bracket_average(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_average(distribution,0.5,0.9)
-  irc$m[i]<-bracket_average(distribution, 0.0001, 0.9999)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  lll<- list(c(0.1,0.2),c(0.3,0.4))
+  vcc <- c()
+  for(l in c(1:10)){vcc[l] <- (bracket_average(distribution, (l-1)/10, (l)/10))}
+  vcc[11]<-bracket_average(distribution, 0, 0.5)
+  vcc[12]<-bracket_average(distribution, 0.5, 0.9)
+  vcc[13]<-bracket_average(distribution, 0, 1)
+  vcc[14]<- 1 - fitted_cdf(distribution, vfr[9])
+  irc[i,varvec] <- vcc
+  }
 irca <- irc
 irc <- irc1
 vfr <- vfr1
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10 <- NA
-irc$d50 <- NA
-irc$d40 <- NA
-irc$m <- NA
-irc$cdf10<-NA
+varvec <- c(paste("d",c(1:10,50,40),sep=""),"m","cdf10")
+irc[varvec] <- NA
 for (i in c(1:dim(irc)[1])) {
   q <- as.vector(as.matrix(irc[i,3:11]))
   distribution <-  thresholds_fit(p, q)
-  irc$d1[i] <- bracket_average(distribution, 0.00001, 0.1)
-  irc$d2[i] <- bracket_average(distribution, 0.1,0.2)
-  irc$d3[i] <- bracket_average(distribution, 0.2,0.3)
-  irc$d4[i] <- bracket_average(distribution, 0.3,0.4)
-  irc$d5[i] <- bracket_average(distribution, 0.4,0.5)
-  irc$d6[i] <- bracket_average(distribution, 0.5,0.6)
-  irc$d7[i] <- bracket_average(distribution, 0.6,0.7)
-  irc$d8[i] <- bracket_average(distribution,0.7,0.8)
-  irc$d9[i] <- bracket_average(distribution, 0.8,0.9)
-  irc$d10[i]<-bracket_average(distribution, 0.9, 0.999999)
-  irc$d50[i] <- bracket_average(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_average(distribution,0.5,0.9)
-  irc$m[i]<-bracket_average(distribution, 0.0001, 0.9999)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  vcc <- c()
+  for(l in c(1:10)){vcc[l] <- (bracket_average(distribution, (l-1)/10, (l)/10))}
+  vcc[11]<-bracket_average(distribution, 0, 0.5)
+  vcc[12]<-bracket_average(distribution, 0.5, 0.9)
+  vcc[13]<-bracket_average(distribution, 0, 1)
+  vcc[14]<- 1 - fitted_cdf(distribution, vfr[9])
+  irc[i,varvec] <- vcc
+  }
 ircb <- irc
 ircf <- left_join(irca, ircb, by=c("ZE"))
 ircf$fm1 <- 1.99*100*(ircf$m.y*1.112*1.17*1  - ircf$m.x*1.161*1.17*1.014)/(ircf$m.x*1.161*1.17*1.014)
@@ -443,9 +384,6 @@ irc90 <- irc90[c(4,7,8)]
 irc90$fm1990 <- as.numeric(irc90$fm1990)
 irc90$fn1990 <- as.numeric(irc90$fn1990)
 irc90$fm1990 <- (irc90$fm1990*irc90$fn1990)/1
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vparis){irc90$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vlyon){irc90$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc90)[1])){if(irc90$depcom[i] %in% vmarseille){irc90$depcom[i]<-"13055"}}
@@ -462,9 +400,6 @@ irc90$fm1990<- (irc90$fm1990/irc90$fn1990)*1*1.41*1.722*1.0106*0.1524
 irc99 <- read.csv("irc1999.csv", sep=";")
 irc99 <- subset(irc99, irc99$nivo=="C")
 irc99 <- irc99[c(6,14,15)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 vall <- c(vparis,vlyon,vmarseille)
 irc99 <- subset(irc99, !irc99$depcom %in% vall)
 irc99 <- aggregate(cbind(fn1999,fs1999)~depcom , data=irc99 , sum)
@@ -480,9 +415,6 @@ irc99$fm1999<- (irc99$fs1999/irc99$fn1999)*1*1.41*1.436*1.009
 irc09 <- read.csv("irc2009.csv", sep=",")
 irc09 <- subset(irc09, irc09$nivo=="C")
 irc09 <- irc09[c(6,9,10)]
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vparis){irc09$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vlyon){irc09$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc09)[1])){if(irc09$depcom[i] %in% vmarseille){irc09$depcom[i]<-"13055"}}
@@ -500,9 +432,6 @@ irc19 <- read.csv("irc2019.csv", sep=",")
 irc19 <- irc19[c(15,4,5)]
 irc19$fn002019 <- as.numeric(irc19$fn002019)
 irc19$fs002019 <- as.numeric(irc19$fs002019)
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120","75001","75002","75003","75004","75005","75006","75007","75008","75009","75010","75011","75012","75013","75014","75015","75016","75017","75018","75019","75020")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216","13331","13332","13333","13334","13335","13336","13337","13338","13339","13340","13341","13342","13343","13344","13345","13346")
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vparis){irc19$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vlyon){irc19$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc19)[1])){if(irc19$depcom[i] %in% vmarseille){irc19$depcom[i]<-"13055"}}
@@ -549,6 +478,12 @@ summary(m_iv)
 coef_test(m_iv, vcov = "CR1", cluster = ze$zone, test = "naive-t")
 
 ##ZE-level, disposable income
+disp12 <- c(10503,13372,15608,17669,20000,22155,25111,29349,37236)
+dec12 <- c(7202,11318,14396,17070,20000,22508,25928,30748,39784)
+disp19 <- c(11620,14760,17370,19690,21930,24410,27390,31590,39600)
+dec19 <- c(7400,12350,15890,18820,21640,24700,28390,33660,43710)
+disp17 <- c(11220,14190,16640,18900,21110,23530,26440,30610,38360)
+dec17 <- c(7310,12050,15480,18360,21120,24100,27720,32810,42370)
 irc0 <- read_excel("filo_main.xlsx",sheet=4)
 irc1 <- read_excel("filo_main.xlsx",sheet=8)
 vfr0 <- disp12
@@ -556,71 +491,35 @@ vfr1 <- disp17
 p <- c(1:9)/10
 irc <- irc0
 vfr <- vfr0
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10 <- NA
-irc$d50 <- NA
-irc$d40 <- NA
-irc$m <- NA
-irc$cdf10 <- NA
+varvec <- c(paste("d",c(1:10,50,40),sep=""),"m","cdf10")
+irc[varvec] <- NA
 for (i in c(1:dim(irc)[1])) {
   q <- as.vector(as.matrix(irc[i,3:11]))
   distribution <-  thresholds_fit(p, q)
-  irc$d1[i] <- bracket_average(distribution, 0.00001, 0.1)
-  irc$d2[i] <- bracket_average(distribution, 0.1,0.2)
-  irc$d3[i] <- bracket_average(distribution, 0.2,0.3)
-  irc$d4[i] <- bracket_average(distribution, 0.3,0.4)
-  irc$d5[i] <- bracket_average(distribution, 0.4,0.5)
-  irc$d6[i] <- bracket_average(distribution, 0.5,0.6)
-  irc$d7[i] <- bracket_average(distribution, 0.6,0.7)
-  irc$d8[i] <- bracket_average(distribution,0.7,0.8)
-  irc$d9[i] <- bracket_average(distribution, 0.8,0.9)
-  irc$d10[i]<-bracket_average(distribution, 0.9, 0.999999)
-  irc$d50[i] <- bracket_average(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_average(distribution,0.5,0.9)
-  irc$m[i]<-bracket_average(distribution, 0.0001, 0.9999)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  vcc <- c()
+  for(l in c(1:10)){vcc[l] <- (bracket_average(distribution, (l-1)/10, (l)/10))}
+  vcc[11]<-bracket_average(distribution, 0, 0.5)
+  vcc[12]<-bracket_average(distribution, 0.5, 0.9)
+  vcc[13]<-bracket_average(distribution, 0, 1)
+  vcc[14]<- 1 - fitted_cdf(distribution, vfr[9])
+  irc[i,varvec] <- as.list(vcc)
+  }
 irca <- irc
 irc <- irc1
 vfr <- vfr1
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10 <- NA
-irc$d50 <- NA
-irc$d40 <- NA
-irc$m <- NA
-irc$cdf10<-NA
+varvec <- c(paste("d",c(1:10,50,40),sep=""),"m","cdf10")
+irc[varvec] <- NA
 for (i in c(1:dim(irc)[1])) {
   q <- as.vector(as.matrix(irc[i,3:11]))
   distribution <-  thresholds_fit(p, q)
-  irc$d1[i] <- bracket_average(distribution, 0.00001, 0.1)
-  irc$d2[i] <- bracket_average(distribution, 0.1,0.2)
-  irc$d3[i] <- bracket_average(distribution, 0.2,0.3)
-  irc$d4[i] <- bracket_average(distribution, 0.3,0.4)
-  irc$d5[i] <- bracket_average(distribution, 0.4,0.5)
-  irc$d6[i] <- bracket_average(distribution, 0.5,0.6)
-  irc$d7[i] <- bracket_average(distribution, 0.6,0.7)
-  irc$d8[i] <- bracket_average(distribution,0.7,0.8)
-  irc$d9[i] <- bracket_average(distribution, 0.8,0.9)
-  irc$d10[i]<-bracket_average(distribution, 0.9, 0.999999)
-  irc$d50[i] <- bracket_average(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_average(distribution,0.5,0.9)
-  irc$m[i]<-bracket_average(distribution, 0.0001, 0.9999)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  vcc <- c()
+  for(l in c(1:10)){vcc[l] <- (bracket_average(distribution, (l-1)/10, (l)/10))}
+  vcc[11]<-bracket_average(distribution, 0, 0.5)
+  vcc[12]<-bracket_average(distribution, 0.5, 0.9)
+  vcc[13]<-bracket_average(distribution, 0, 1)
+  vcc[14]<- 1 - fitted_cdf(distribution, vfr[9])
+  irc[i,varvec] <- as.list(vcc)
+  }
 ircb <- irc
 ircf <- left_join(irca, ircb, by=c("ZE"))
 ircf$fm1 <- 1.99*100*(ircf$m.y*1.112*1.17*1  - ircf$m.x*1.161*1.17*1)/(ircf$m.x*1.161*1.17*1)
@@ -765,9 +664,6 @@ rm(aa,ab,ac)
 irc2002r2 <- read.csv("irc2002r2.csv", sep=",")
 irc <- irc2002r2
 irc <- subset(irc, irc$depcom %in% v1)
-vparis <- c("75101","75102","75103","75104","75105","75106","75107","75108","75109","75110","75111","75112","75113","75114","75115","75116","75117","75118","75119","75120")
-vlyon <- c("69381","69382","69383","69384","69385","69386","69387","69388","69389")
-vmarseille <- c("13201","13202","13203","13204","13205","13206","13207","13208","13209","13210","13211","13212","13213","13214","13215","13216")
 for(i in c(1:dim(irc)[1])){if(irc$depcom[i] %in% vparis){irc$depcom[i]<-"75056"}}
 for(i in c(1:dim(irc)[1])){if(irc$depcom[i] %in% vlyon){irc$depcom[i]<-"69123"}}
 for(i in c(1:dim(irc)[1])){if(irc$depcom[i] %in% vmarseille){irc$depcom[i]<-"13055"}}
@@ -793,62 +689,24 @@ exc2 <- c(exc2,exc3)
 exc_full <- c(exc, exc1,exc2)
 exc_full <- unique(exc_full)
 index_full <- subset(index, !(index %in% exc_full))
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10<-NA
-irc$d1w <- NA
-irc$d2w <- NA
-irc$d3w <- NA
-irc$d4w <- NA
-irc$d5w <- NA
-irc$d6w <- NA
-irc$d7w <- NA
-irc$d8w <- NA
-irc$d9w <- NA
-irc$d10w<-NA
-irc$d40 <-NA
-irc$d50 <- NA
+varvec1 <- c(paste("d",c(1:10),sep=""),paste("d",c(1:10),"w",sep=""),"d40","d50","cdf10")
+irc[varvec1] <- NA
 irc$m<-irc$fs2002 / irc$fn2002
-irc$cdf10<-NA
 q <- c(0, 7623.82, 10672.8,15246.27,22868.73,38113.63) # Quantiles for 200'1
 q <- c(0, 9000, 12000,19000,31000,78000) #Quantiles for 200'2
 vfr <- c(2162.13,4631.08,7007.2,8962.04,10825.39,13242.11,16630.54,21516.96,30278.2)
+i<-1
 for (i in index_full) {
   a=c(irc$a1_2002[i], irc$a2_2002[i], irc$a3_2002[i], irc$a4_2002[i], irc$a5_2002[i], irc$a6_2002[i])
   p=c(irc$f1_2002[i], irc$f2_2002[i], irc$f3_2002[i], irc$f4_2002[i], irc$f5_2002[i], irc$f6_2002[i])
   average = irc$ind_mean_2002[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+  c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+  bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+   1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  
+  }
 q <- c(0, 9000, 12000,19000,31000) #Quantiles for 200'2
 for (i in exc2) {
   a_fin <- (irc$fs2002[i]-irc$fs12002[i]-irc$fs22002[i]-irc$fs32002[i]-irc$fs42002[i]) / (irc$fn2002[i]-irc$fn12002[i]-irc$fn22002[i]-irc$fn32002[i]-irc$fn42002[i])
@@ -856,30 +714,12 @@ for (i in exc2) {
   p=c(irc$f1_2002[i], irc$f2_2002[i], irc$f3_2002[i], irc$f4_2002[i],irc$f5_2002[i])
   average = irc$ind_mean_2002[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  
+  }
 ircs <- irc
 irc <- ircs
 irc <- irc[c(7,11,86:110)]
@@ -941,60 +781,20 @@ exc2 <- c(exc2,exci)
 exc_full <- c(exc1,exc2,exc3,exc4)
 exc_full <- unique(exc_full)
 index_full <- subset(index, !(index %in% exc_full))
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10<-NA
-irc$d1w <- NA
-irc$d2w <- NA
-irc$d3w <- NA
-irc$d4w <- NA
-irc$d5w <- NA
-irc$d6w <- NA
-irc$d7w <- NA
-irc$d8w <- NA
-irc$d9w <- NA
-irc$d10w<-NA
-irc$d40 <-NA
-irc$d50 <- NA
+varvec1 <- c(paste("d",c(1:10),sep=""),paste("d",c(1:10),"w",sep=""),"d40","d50","cdf10")
+irc[varvec1] <- NA
 irc$m<-irc$fs002009 / irc$fn002009
-irc$cdf10<-NA
 q <- c(0, 9400, 11250,13150,15000,16900,18750,23750,28750,38750,48750,97500) # Matching quantiles # For 200'7
 for (i in index_full) {
   a=c(irc$a1_2009[i], irc$a2_2009[i], irc$a3_2009[i], irc$a4_2009[i], irc$a5_2009[i], irc$a6_2009[i],irc$a7_2009[i], irc$a8_2009[i], irc$a9_2009[i], irc$a10_2009[i], irc$a11_2009[i], irc$a12_2009[i])
   p=c(irc$f1_2009[i], irc$f2_2009[i], irc$f3_2009[i], irc$f4_2009[i], irc$f5_2009[i], irc$f6_2009[i],irc$f7_2009[i], irc$f8_2009[i], irc$f9_2009[i], irc$f10_2009[i], irc$f11_2009[i], irc$f12_2009[i])
   average = irc$ind_mean_2009[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)  
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  }
 fitted_quantile(distribution, 0.9)
 q <- c(0, 9400, 11250,13150,15000,16900,18750,23750,28750,38750,48750) # Matching quantiles # For 2009
 for (i in exc2) {
@@ -1003,30 +803,11 @@ for (i in exc2) {
   p=c(irc$f1_2009[i], irc$f2_2009[i], irc$f3_2009[i], irc$f4_2009[i],irc$f5_2009[i],irc$f6_2009[i], irc$f7_2009[i], irc$f8_2009[i], irc$f9_2009[i],irc$f10_2009[i],irc$f11_2009[i])
   average = irc$ind_mean_2009[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  }
 q <- c(0, 9400, 11250,13150,15000,16900,18750,23750,28750,38750) # Matching quantiles # For 2009
 for (i in exc3) {
   a_fin <- (irc$fs002009[i]-irc$fs012009[i]-irc$fs022009[i]-irc$fs032009[i]-irc$fs042009[i]-irc$fs052009[i]-irc$fs062009[i]-irc$fs072009[i]-irc$fs082009[i]-irc$fs092009[i]) / (irc$fn002009[i]-irc$fn012009[i]-irc$fn022009[i]-irc$fn032009[i]-irc$fn042009[i]-irc$fn052009[i]-irc$fn062009[i]-irc$fn072009[i]-irc$fn082009[i]-irc$fn092009[i])
@@ -1034,30 +815,11 @@ for (i in exc3) {
   p=c(irc$f1_2009[i], irc$f2_2009[i], irc$f3_2009[i], irc$f4_2009[i],irc$f5_2009[i],irc$f6_2009[i], irc$f7_2009[i], irc$f8_2009[i], irc$f9_2009[i],irc$f10_2009[i])
   average = irc$ind_mean_2009[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  }
 ircs <- irc
 irc <- ircs
 irc <- irc[c(6,9,150:174)]
@@ -1117,60 +879,20 @@ exc2 <- c(exc2,exci)
 exc_full <- c(exc, exc1,exc2,exc3,exc4,exc5,exc6,exc7,exc8)
 exc_full <- unique(exc_full)
 index_full <- subset(index, !(index %in% exc_full))
-irc$d1 <- NA
-irc$d2 <- NA
-irc$d3 <- NA
-irc$d4 <- NA
-irc$d5 <- NA
-irc$d6 <- NA
-irc$d7 <- NA
-irc$d8 <- NA
-irc$d9 <- NA
-irc$d10<-NA
-irc$d1w <- NA
-irc$d2w <- NA
-irc$d3w <- NA
-irc$d4w <- NA
-irc$d5w <- NA
-irc$d6w <- NA
-irc$d7w <- NA
-irc$d8w <- NA
-irc$d9w <- NA
-irc$d10w<-NA
-irc$d40 <-NA
-irc$d50 <- NA
+varvec1 <- c(paste("d",c(1:10),sep=""),paste("d",c(1:10),"w",sep=""),"d40","d50","cdf10")
+irc[varvec1] <- NA
 irc$m<-(irc$fs002019 / irc$fn002019) *1000
-irc$cdf10<-NA
 q <- c(0, 10000,12000,15000,20000,30000,50000,100000) # Matching quantiles # For 200'7
 for (i in index_full) {
   a=c(irc$a1_2019[i], irc$a2_2019[i], irc$a3_2019[i], irc$a4_2019[i], irc$a5_2019[i], irc$a6_2019[i],irc$a7_2019[i], irc$a8_2019[i])
   p=c(irc$f1_2019[i], irc$f2_2019[i], irc$f3_2019[i], irc$f4_2019[i], irc$f5_2019[i], irc$f6_2019[i],irc$f7_2019[i], irc$f8_2019[i])
   average = irc$ind_mean_2019[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  }
 q <- c(0, 10000,12000,15000,20000,30000,50000) # Matching quantiles # For 200'7
 for (i in exc2) {
   a_fin <- ((irc$fs002019[i]-irc$fs012019[i]-irc$fs022019[i]-irc$fs032019[i]-irc$fs042019[i]-irc$fs052019[i]-irc$fs062019[i]) / (irc$fn002019[i]-irc$fn012019[i]-irc$fn022019[i]-irc$fn032019[i]-irc$fn042019[i]-irc$fn052019[i]-irc$fn062019[i])) *1000
@@ -1178,30 +900,11 @@ for (i in exc2) {
   p=c(irc$f1_2019[i], irc$f2_2019[i], irc$f3_2019[i], irc$f4_2019[i],irc$f5_2019[i],irc$f6_2019[i], irc$f7_2019[i])
   average = irc$ind_mean_2019[i]
   distribution <- tabulation_fit(p, q, bracketavg = a, average = average)
-  irc$d1[i] <- fitted_quantile(distribution, 0.05)
-  irc$d2[i] <- fitted_quantile(distribution, 0.1)
-  irc$d3[i] <- fitted_quantile(distribution, 0.15)
-  irc$d4[i] <- fitted_quantile(distribution, 0.2)
-  irc$d5[i] <- fitted_quantile(distribution, 0.25)
-  irc$d6[i] <- fitted_quantile(distribution, 0.3)
-  irc$d7[i] <- fitted_quantile(distribution, 0.35)
-  irc$d8[i] <- fitted_quantile(distribution, 0.4)
-  irc$d9[i] <- fitted_quantile(distribution, 0.45)
-  irc$d10[i]<-bracket_share(distribution, 0.9, 0.99999)
-  irc$m[i] <- bracket_average(distribution, 0.05,0.95)
-  irc$d1w[i] <- fitted_quantile(distribution, 0.5)
-  irc$d2w[i] <- fitted_quantile(distribution, 0.55)
-  irc$d3w[i] <- fitted_quantile(distribution, 0.6)
-  irc$d4w[i] <- fitted_quantile(distribution, 0.65)
-  irc$d5w[i] <-fitted_quantile(distribution, 0.7)
-  irc$d6w[i] <- fitted_quantile(distribution, 0.75)
-  irc$d7w[i] <- fitted_quantile(distribution, 0.8)
-  irc$d8w[i] <- fitted_quantile(distribution, 0.85)
-  irc$d9w[i] <- fitted_quantile(distribution, 0.9)
-  irc$d10w[i] <- fitted_quantile(distribution, 0.95)
-  irc$cdf10[i]<- 1 - fitted_cdf(distribution, vfr[9])
-  irc$d50[i] <- bracket_share(distribution, 0, 0.5)
-  irc$d40[i] <- bracket_share(distribution, 0.5, 0.9)}
+  irc[i,varvec1] <- c(c(fitted_quantile(distribution,c(1:9)*.05)),bracket_share(distribution, 0.9, 0.99999),
+                      c(fitted_quantile(distribution,c(1:10)*.05+0.45)),
+                      bracket_share(distribution, 0, 0.5),bracket_share(distribution, 0.5, 0.9),
+                      1 - fitted_cdf(distribution, vfr[9]))
+  irc$m[i] <- bracket_average(distribution, 0.05,0.95)  }
 ircs <- irc
 irc <- ircs
 irc <- irc[c(2,101,118:142)]
